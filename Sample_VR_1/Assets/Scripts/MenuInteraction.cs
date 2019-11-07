@@ -29,6 +29,6 @@ public class MenuInteraction : MonoBehaviour
 
     public void Videos()
     {
-        SceneManager.LoadScene("Videos");
+        SceneManager.LoadScene("Video");
     }
 }
