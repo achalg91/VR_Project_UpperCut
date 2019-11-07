@@ -6,16 +6,16 @@ public class ObjectExploder : MonoBehaviour
 {
     private IEnumerator coroutine;
 
-    private GameObject mainHitObject;
-
     [SerializeField]
-    public GameObject MainHitObjectPrefab;
+    public GameObject mainHitObject;
 
     [SerializeField]
     public GameObject particlePrefab;
 
     [SerializeField]
     public GameObject referencePoint;
+
+    private GameObject ovrCameraRig;
 
     public int particleCount;
 
@@ -29,7 +29,9 @@ public class ObjectExploder : MonoBehaviour
     {
         alreadyExploded = false;
 
-        ShowHitPoint(referencePoint.transform.position, referencePoint.transform.rotation);
+        var vector = OVRManager.tracker.GetPose().position;
+        mainHitObject.gameObject.transform.position = vector;
+
         basePos = referencePoint.transform.position;
         baseRot = referencePoint.transform.rotation;
     }
@@ -37,11 +39,11 @@ public class ObjectExploder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!alreadyExploded)
-        {
-            coroutine = ExplodeHitObject(5.0f);
-            StartCoroutine(coroutine);
-        }
+        //if (!alreadyExploded)
+        //{
+        //    coroutine = ExplodeHitObject(10.0f);
+        //    StartCoroutine(coroutine);
+        //}
     }
 
     IEnumerator ExplodeHitObject(float waitTime)
@@ -52,26 +54,20 @@ public class ObjectExploder : MonoBehaviour
         
     }
 
-    public void ShowHitPoint(Vector3 pos, Quaternion rot)
+     
+    private void OnTriggerEnter(Collider other)
     {
-        mainHitObject = Instantiate(MainHitObjectPrefab, pos, rot);
-    }
-
-
-    /*
-     * private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("hitItem"))
+        if (other.gameObject.CompareTag("Cube"))
         {
             Exploding();
         }
     }
-    */
+    
 
     void Exploding()
     {
         Explode();
-        Destroy(mainHitObject);
+        
         alreadyExploded = true;
     }
 

@@ -161,13 +161,6 @@ public class OVRGrabber : MonoBehaviour
 
     void OnTriggerEnter(Collider otherCollider)
     {
-        //get the other collider
-
-        if (otherCollider.gameObject.CompareTag("Cube"))
-        {
-            otherCollider.gameObject.SetActive(false);
-        }
-
         // Get the grab trigger
         OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
         if (grabbable == null) return;

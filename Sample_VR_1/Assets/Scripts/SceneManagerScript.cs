@@ -11,6 +11,9 @@ public class SceneManagerScript : MonoBehaviour
     [SerializeField]
     public GameObject videoScreen;
 
+    [SerializeField]
+    public GameObject startingText;
+
 
     private TextMeshProUGUI m_textMesh;
     private UnityEngine.Video.VideoPlayer m_videoPlayer;
@@ -57,6 +60,7 @@ public class SceneManagerScript : MonoBehaviour
             else
             {
                 timerText.SetActive(false);
+                startingText.SetActive(false);
                 videoScreen.SetActive(true);
                 m_videoPlayer.Play();
             }
