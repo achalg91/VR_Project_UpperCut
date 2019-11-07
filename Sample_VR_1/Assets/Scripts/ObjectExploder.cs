@@ -34,11 +34,11 @@ public class ObjectExploder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!alreadyExploded)
-        {
-            coroutine = ExplodeHitObject(10.0f);
-            StartCoroutine(coroutine);
-        }
+        //if (!alreadyExploded)
+        //{
+        //    coroutine = ExplodeHitObject(10.0f);
+        //    StartCoroutine(coroutine);
+        //}
     }
 
     IEnumerator ExplodeHitObject(float waitTime)
@@ -49,15 +49,15 @@ public class ObjectExploder : MonoBehaviour
         
     }
 
-    /*
-     * private void OnTriggerEnter(Collider other)
+     
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("hitItem"))
+        if (other.gameObject.CompareTag("Cube"))
         {
             Exploding();
         }
     }
-    */
+    
 
     void Exploding()
     {
