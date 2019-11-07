@@ -15,6 +15,8 @@ public class ObjectExploder : MonoBehaviour
     [SerializeField]
     public GameObject referencePoint;
 
+    private GameObject ovrCameraRig;
+
     public int particleCount;
 
     public float particleMinSize, particleMaxSize;
@@ -26,6 +28,9 @@ public class ObjectExploder : MonoBehaviour
     void Start()
     {
         alreadyExploded = false;
+
+        var vector = OVRManager.tracker.GetPose().position;
+        mainHitObject.gameObject.transform.position = vector;
 
         basePos = referencePoint.transform.position;
         baseRot = referencePoint.transform.rotation;
@@ -62,8 +67,7 @@ public class ObjectExploder : MonoBehaviour
     void Exploding()
     {
         Explode();
-        mainHitObject.SetActive(false);
-        Destroy(mainHitObject);
+        
         alreadyExploded = true;
     }
 
