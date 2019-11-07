@@ -6,10 +6,8 @@ public class ObjectExploder : MonoBehaviour
 {
     private IEnumerator coroutine;
 
-    private GameObject mainHitObject;
-
     [SerializeField]
-    public GameObject MainHitObjectPrefab;
+    public GameObject mainHitObject;
 
     [SerializeField]
     public GameObject particlePrefab;
@@ -29,7 +27,6 @@ public class ObjectExploder : MonoBehaviour
     {
         alreadyExploded = false;
 
-        ShowHitPoint(referencePoint.transform.position, referencePoint.transform.rotation);
         basePos = referencePoint.transform.position;
         baseRot = referencePoint.transform.rotation;
     }
@@ -39,7 +36,7 @@ public class ObjectExploder : MonoBehaviour
     {
         if (!alreadyExploded)
         {
-            coroutine = ExplodeHitObject(5.0f);
+            coroutine = ExplodeHitObject(10.0f);
             StartCoroutine(coroutine);
         }
     }
@@ -51,12 +48,6 @@ public class ObjectExploder : MonoBehaviour
         Exploding();
         
     }
-
-    public void ShowHitPoint(Vector3 pos, Quaternion rot)
-    {
-        mainHitObject = Instantiate(MainHitObjectPrefab, pos, rot);
-    }
-
 
     /*
      * private void OnTriggerEnter(Collider other)
@@ -71,6 +62,7 @@ public class ObjectExploder : MonoBehaviour
     void Exploding()
     {
         Explode();
+        mainHitObject.SetActive(false);
         Destroy(mainHitObject);
         alreadyExploded = true;
     }
