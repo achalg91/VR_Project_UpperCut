@@ -11,7 +11,7 @@
 ### Group Members:
 
 - Melanie Kaplan-Cohen, mk2573@cornell.edu, @melaniekc
-- Achal Gupta, ag2485@cornell.edu
+- Achal Gupta, ag2485@cornell.edu, ag2485
 - Sunny Ladkani, sl2883@cornell.edu sl2883
 
 
