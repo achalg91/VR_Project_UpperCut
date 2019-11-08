@@ -15,6 +15,8 @@ public class ObjectExploder : MonoBehaviour
     [SerializeField]
     public GameObject referencePoint;
 
+    public GameObject cameraAnchor;
+
     private GameObject ovrCameraRig;
 
     public int particleCount;
@@ -29,7 +31,7 @@ public class ObjectExploder : MonoBehaviour
     {
         alreadyExploded = false;
 
-        var vector = OVRManager.tracker.GetPose().position;
+        Vector3 vector = cameraAnchor.transform.position + cameraAnchor.transform.forward * 0.5f + cameraAnchor.transform.up * 0.5f;
         mainHitObject.gameObject.transform.position = vector;
 
         basePos = referencePoint.transform.position;
