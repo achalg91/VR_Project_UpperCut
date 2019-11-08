@@ -19,7 +19,7 @@ public class MenuInteraction : MonoBehaviour
 
     public void Calibrate()
     {
-        SceneManager.LoadScene("Calibration");   
+        SceneManager.LoadScene("Calibration_final");   
     }
 
     public void Practice()
