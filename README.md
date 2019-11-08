@@ -11,7 +11,7 @@
 ### Group Members:
 
 - Melanie Kaplan-Cohen, mk2573@cornell.edu, @melaniekc
-- [Insert your full name, Cornell email, GitHub handle]
-- [Insert your full name, Cornell email, GitHub handle]
+- Achal Gupta, ag2485@cornell.edu
+- Sunny Ladkani, sl2883@cornell.edu sl2883
 
 
