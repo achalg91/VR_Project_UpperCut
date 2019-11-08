@@ -153,6 +153,7 @@ MonoBehaviour:
   particlePrefab: {fileID: 5986069860049521963, guid: b2169ed503d484c83bffb274913b8b27,
     type: 3}
   referencePoint: {fileID: 1065019469}
+  cameraAnchor: {fileID: 0}
   particleCount: 100
   particleMinSize: 0.5
   particleMaxSize: 1.5
@@ -949,7 +950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065019469}
   m_LocalRotation: {x: 0.68798137, y: -0, z: -0, w: 0.72572845}
-  m_LocalPosition: {x: -0.06, y: 1.76, z: -0.77}
+  m_LocalPosition: {x: 0.402, y: 1.76, z: 0.489}
   m_LocalScale: {x: 0.50585735, y: 0.05, z: 0.5479656}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1046,7 +1047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4026207958311046, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4032153296153984, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1054,7 +1055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4032153296153984, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.52
+      value: 1.454
       objectReference: {fileID: 0}
     - target: {fileID: 4032153296153984, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1133,6 +1134,7 @@ MonoBehaviour:
   particlePrefab: {fileID: 5986069860049521963, guid: b2169ed503d484c83bffb274913b8b27,
     type: 3}
   referencePoint: {fileID: 1065019469}
+  cameraAnchor: {fileID: 0}
   particleCount: 100
   particleMinSize: 0.5
   particleMaxSize: 1.5
@@ -1152,6 +1154,7 @@ MonoBehaviour:
   particlePrefab: {fileID: 5986069860049521963, guid: b2169ed503d484c83bffb274913b8b27,
     type: 3}
   referencePoint: {fileID: 1065019469}
+  cameraAnchor: {fileID: 0}
   particleCount: 100
   particleMinSize: 0.5
   particleMaxSize: 1.5
