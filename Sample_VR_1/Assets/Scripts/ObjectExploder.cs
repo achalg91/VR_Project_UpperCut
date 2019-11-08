@@ -67,8 +67,8 @@ public class ObjectExploder : MonoBehaviour
             mainHitObject.SetActive(true);
 
             Vector3 vector = cameraAnchor.transform.position
-                            + cameraAnchor.transform.forward  * Random.Range(0.25f, +0.505f)
-                            + cameraAnchor.transform.up  * Random.Range(-0.5f, 0.5f);
+                            + cameraAnchor.transform.forward  * Globals.armLength
+                            + cameraAnchor.transform.up  * Globals.height;
 
 
             mainHitObject.gameObject.transform.position = vector;
