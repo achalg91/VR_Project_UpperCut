@@ -24,7 +24,7 @@ public class MenuInteraction : MonoBehaviour
 
     public void Practice()
     {
-        SceneManager.LoadScene("Practice");
+        SceneManager.LoadScene("Practise");
     }
 
     public void Videos()

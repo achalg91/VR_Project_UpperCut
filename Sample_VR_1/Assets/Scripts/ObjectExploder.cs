@@ -31,7 +31,7 @@ public class ObjectExploder : MonoBehaviour
     {
         alreadyExploded = false;
 
-        Vector3 vector = cameraAnchor.transform.position + cameraAnchor.transform.forward * 0.5f + cameraAnchor.transform.up * 0.5f;
+        Vector3 vector = cameraAnchor.transform.position + cameraAnchor.transform.forward + cameraAnchor.transform.up;
         mainHitObject.gameObject.transform.position = vector;
 
         basePos = referencePoint.transform.position;
@@ -48,19 +48,41 @@ public class ObjectExploder : MonoBehaviour
         //}
     }
 
-    IEnumerator ExplodeHitObject(float waitTime)
+    //IEnumerator ExplodeHitObject(float waitTime)
+    //{
+    //    if (!alreadyExploded)
+    //    {
+    //        alreadyExploded = true;
+    //        yield return new WaitForSeconds(waitTime);
+    //        Exploding();
+    //    }
+        
+    //}
+
+    IEnumerator WaitToEnableMainObject(float waitTime)
     {
-        alreadyExploded = true;
-        yield return new WaitForSeconds(waitTime);
-        Exploding();
+        if(!alreadyExploded)
+        {
+            yield return new WaitForSeconds(waitTime);
+            mainHitObject.SetActive(true);
+
+            Vector3 vector = cameraAnchor.transform.position
+                            + cameraAnchor.transform.forward  * Random.Range(0.25f, +0.505f)
+                            + cameraAnchor.transform.up  * Random.Range(-0.5f, 0.5f);
+
+
+            mainHitObject.gameObject.transform.position = vector;
+            
+        }
         
     }
 
-     
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Cube"))
         {
+            mainHitObject.SetActive(true);
+            alreadyExploded = false;
             Exploding();
         }
     }
@@ -68,7 +90,12 @@ public class ObjectExploder : MonoBehaviour
 
     void Exploding()
     {
+        mainHitObject.SetActive(false);
+
         Explode();
+
+        coroutine = WaitToEnableMainObject(1.0f);
+        StartCoroutine(coroutine);
         
         alreadyExploded = true;
     }
