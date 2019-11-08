@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CalibrationScript : MonoBehaviour
@@ -10,7 +11,7 @@ public class CalibrationScript : MonoBehaviour
     private enum State { Start = 1, Height, Arms, Final }
     State currentState = State.Start;
     public TextMeshProUGUI display;
-    public GameObject button, eyeCamera, rightHand;
+    public GameObject button, eyeCamera, rightHand, floor;
     public Text heightText, widthText;
     private string height = "PLEASE STAND STRAIGHT AND PRESS BUTTON BELOW!";
     private string arms = "PLEASE EXTEND ARMS FORWARD AND PRESS BUTTON BELOW!";
@@ -43,7 +44,8 @@ public class CalibrationScript : MonoBehaviour
             case State.Height:
                 display.text = arms;
                 button.GetComponentInChildren<Text>().text = getWidth;
-                float height1 = Vector3.Distance(Camera.main.transform.position, eyeCamera.transform.position);
+                float height1 = Vector3.Distance(floor.transform.position, eyeCamera.transform.position);
+                Globals.height = height1;
                 heightText.text = "Height: " + height1.ToString(".0##") + "m";
                 currentState = State.Arms;
                 break;
@@ -52,14 +54,12 @@ public class CalibrationScript : MonoBehaviour
                 //initia
                 button.GetComponentInChildren<Text>().text = buttonSuccess;
                 float distance = Vector3.Distance(eyeCamera.transform.position ,rightHand.transform.position);
+                Globals.armLength = distance;
                 widthText.text = "Length: " + distance.ToString(".0##") + "m";
                 currentState = State.Final;
                 break;
             case State.Final:
-                display.text = "MAA CHUDAA LO!";
-                //initia
-                button.GetComponentInChildren<Text>().text = hellYeah;
-                currentState = State.Start;
+                SceneManager.LoadScene("Menu");
                 break;
             default:
                 display.text = "MAA CHUDAA LO!";
