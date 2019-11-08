@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Practice New.unity
     guid: 45b2b7be49154414d85c0d79ffb2a677
   - enabled: 1
-    path: Assets/Scenes/Practice.unity
+    path: Assets/Scenes/Practice_achal.unity
     guid: 02429cea9f06148b4962103d54b803c2
   - enabled: 1
     path: Assets/Scenes/Calibration_final.unity
