@@ -4,6 +4,6 @@ using UnityEngine;
 
 static class Globals 
 {
-    public static float height = 0;
-    internal static float armLength= 0 ;
+    public static float height = 3.5f;
+    internal static float armLength= 0.8f ;
 }
