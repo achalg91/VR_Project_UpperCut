@@ -9,10 +9,12 @@ using Oculus.Avatar;
 public class CalibrationScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    private enum State { Start = 1, Height, Arms, Final }
+    private enum State { Start = 1, Height, Arms, Final };
+    private enum AudioState { Intro = 1, HeightIntro, ArmsIntro, End };
     State currentState = State.Start;
     public TextMeshProUGUI display;
     public GameObject button, eyeCamera, rightHand, floor;
+    public GameObject audio1, audio2, audio3, audio4;
     public GameObject DistanceTextPrefab;
     private LineRenderer m_lineHandleRenderer;
 
@@ -24,6 +26,9 @@ public class CalibrationScript : MonoBehaviour
     private string getHeight = "GET HEIGHT!";
     private string getWidth = "GET LENGTH!";
     private string buttonSuccess = "DONE!";
+
+    
+
 
     GameObject textMeshObj;
 
@@ -44,6 +49,8 @@ public class CalibrationScript : MonoBehaviour
 
         textMeshObj = Instantiate(DistanceTextPrefab, Vector3.one, Quaternion.Euler(0, 0, 180));
         textMeshObj.SetActive(false);
+
+        playAudio(AudioState.Intro);
 
     }
 
@@ -140,6 +147,7 @@ public class CalibrationScript : MonoBehaviour
                 display.text = height;
                 button.GetComponentInChildren<Text>().text = getHeight;
                 currentState = State.Height;
+                playAudio(AudioState.HeightIntro);
                 PlayShoot(true);
                 break;
             case State.Height:
@@ -149,6 +157,7 @@ public class CalibrationScript : MonoBehaviour
                 Globals.height = height1;
                 heightText.text = "Height: " + height1.ToString(".0##") + "m";
                 currentState = State.Arms;
+                playAudio(AudioState.ArmsIntro);
                 PlayShoot(true);
                 break;
             case State.Arms:
@@ -159,6 +168,7 @@ public class CalibrationScript : MonoBehaviour
                 Globals.armLength = distance;
                 widthText.text = "Length: " + distance.ToString(".0##") + "m";
                 currentState = State.Final;
+                playAudio(AudioState.End);
                 PlayShoot(true);
                 break;
             case State.Final:
@@ -180,6 +190,43 @@ public class CalibrationScript : MonoBehaviour
         
                 
         
+    }
+
+    private void playAudio(AudioState num)
+    {
+        switch(num)
+        {
+            case AudioState.Intro:
+                audio1.SetActive(true);
+                audio2.SetActive(false);
+                audio3.SetActive(false);
+                audio4.SetActive(false);
+                break;
+            case AudioState.HeightIntro:
+                audio1.SetActive(false);
+                audio2.SetActive(true);
+                audio3.SetActive(false);
+                audio4.SetActive(false);
+                break;
+            case AudioState.ArmsIntro:
+                audio1.SetActive(false);
+                audio2.SetActive(false);
+                audio3.SetActive(true);
+                audio4.SetActive(false);
+                break;
+            case AudioState.End:
+                audio1.SetActive(false);
+                audio2.SetActive(false);
+                audio3.SetActive(false);
+                audio4.SetActive(true);
+                break;
+            default:
+                audio1.SetActive(false);
+                audio2.SetActive(false);
+                audio3.SetActive(false);
+                audio4.SetActive(false);
+                break;
+        }
     }
 
 }
