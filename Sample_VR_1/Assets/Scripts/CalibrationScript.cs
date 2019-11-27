@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Oculus.Avatar;
 
 public class CalibrationScript : MonoBehaviour
 {
@@ -107,6 +108,29 @@ public class CalibrationScript : MonoBehaviour
         }
     }
 
+
+    /**
+     * Code to enable haptic
+     **/
+
+    public void PlayShoot(bool rightHanded)
+    {
+        if (rightHanded) StartCoroutine(Haptics(1, 1, 0.3f, true, false));
+        else StartCoroutine(Haptics(1, 1, 0.3f, false, true));
+    }
+
+    IEnumerator Haptics(float frequency, float amplitude, float duration, bool rightHand, bool leftHand)
+    {
+        if (rightHand) OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
+        if (leftHand) OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.LTouch);
+
+        yield return new WaitForSeconds(duration);
+
+        if (rightHand) OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+        if (leftHand) OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
+    }
+
+
     public void UpdateState()
     {
         switch (currentState)
@@ -116,7 +140,7 @@ public class CalibrationScript : MonoBehaviour
                 display.text = height;
                 button.GetComponentInChildren<Text>().text = getHeight;
                 currentState = State.Height;
-                
+                PlayShoot(true);
                 break;
             case State.Height:
                 display.text = arms;
@@ -125,8 +149,7 @@ public class CalibrationScript : MonoBehaviour
                 Globals.height = height1;
                 heightText.text = "Height: " + height1.ToString(".0##") + "m";
                 currentState = State.Arms;
-                
-
+                PlayShoot(true);
                 break;
             case State.Arms:
                 display.text = success;
@@ -136,9 +159,7 @@ public class CalibrationScript : MonoBehaviour
                 Globals.armLength = distance;
                 widthText.text = "Length: " + distance.ToString(".0##") + "m";
                 currentState = State.Final;
-                
-
-
+                PlayShoot(true);
                 break;
             case State.Final:
                 SceneManager.LoadScene("Menu");
