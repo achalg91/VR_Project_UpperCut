@@ -845,6 +845,11 @@ MonoBehaviour:
   eyeCamera: {fileID: 0}
   rightHand: {fileID: 0}
   floor: {fileID: 0}
+  audio1: {fileID: 0}
+  audio2: {fileID: 0}
+  audio3: {fileID: 0}
+  audio4: {fileID: 0}
+  DistanceTextPrefab: {fileID: 0}
   heightText: {fileID: 0}
   widthText: {fileID: 0}
 --- !u!4 &1115625005
@@ -1308,7 +1313,7 @@ GameObject:
   - component: {fileID: 1772247454}
   - component: {fileID: 1772247453}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -455,11 +455,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
-    - target: {fileID: 1257185525889834, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
+    - target: {fileID: 1155112558459254, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
       propertyPath: m_TagString
-      value: RightHand
+      value: MainCamera
       objectReference: {fileID: 0}
-    - target: {fileID: 1814968113460370, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
+    - target: {fileID: 20547158359302298, guid: efe266538a8dcda4dbd04fbff7997053,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257185525889834, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
       propertyPath: m_TagString
       value: RightHand
       objectReference: {fileID: 0}
@@ -471,14 +476,9 @@ PrefabInstance:
       propertyPath: m_TagString
       value: LeftHand
       objectReference: {fileID: 0}
-    - target: {fileID: 1155112558459254, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
+    - target: {fileID: 1814968113460370, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
       propertyPath: m_TagString
-      value: MainCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 20547158359302298, guid: efe266538a8dcda4dbd04fbff7997053,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 1
+      value: RightHand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efe266538a8dcda4dbd04fbff7997053, type: 3}
