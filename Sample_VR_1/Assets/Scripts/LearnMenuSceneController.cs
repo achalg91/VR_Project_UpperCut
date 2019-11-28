@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class LearnMenuSceneController : MonoBehaviour
@@ -17,26 +18,49 @@ public class LearnMenuSceneController : MonoBehaviour
         
     }
 
-    public void Jab()
+    public void JabTutorial()
     {
         Globals.LearnMenuInformation = "Jab";
         LoadTutorialScene();
     }
 
-    public void Hook()
+    public void HookTutorial()
     {
         Globals.LearnMenuInformation = "Hook";
         LoadTutorialScene();
     }
 
-    public void UpperCut()
+    public void UpperCutTutorial()
     {
         Globals.LearnMenuInformation = "UpperCut";
         LoadTutorialScene();
     }
 
+
+    public void JabPractice()
+    {
+        Globals.LearnMenuInformation = "Jab";
+        LoadPracticeScene()
+    }
+
+    public void HookPractice()
+    {
+        Globals.LearnMenuInformation = "Hook";
+        LoadPracticeScene()
+    }
+
+    public void UpperCutPractice()
+    {
+        Globals.LearnMenuInformation = "UpperCut";
+        LoadPracticeScene()
+    }
+
     void LoadTutorialScene()
     {
-     SceneManager.LoadScene(Video);
+        SceneManager.LoadScene(Globals.Video);
+    }
+    void LoadPracticeScene()
+    {
+        SceneManager.LoadScene(Globals.Practice);
     }
 }

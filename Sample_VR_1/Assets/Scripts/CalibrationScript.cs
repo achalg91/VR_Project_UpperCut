@@ -172,7 +172,7 @@ public class CalibrationScript : MonoBehaviour
                 PlayShoot(true);
                 break;
             case State.Final:
-                SceneManager.LoadScene("Menu");
+                SceneManager.LoadScene(Globals.MainMenu);
                 break;
             default:
                 display.text = "OK.. TATA.";

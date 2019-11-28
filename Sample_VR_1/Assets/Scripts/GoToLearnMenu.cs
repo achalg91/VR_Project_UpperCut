@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuInteraction : MonoBehaviour
+public class GoToLearnMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -17,17 +17,7 @@ public class MenuInteraction : MonoBehaviour
         
     }
 
-    public void Calibrate()
-    {
-        SceneManager.LoadScene(Globals.Calibration);   
-    }
-
-    public void Train()
-    {
-        SceneManager.LoadScene(Globals.Train);
-    }
-
-    public void Learn()
+    public void LearnMenu()
     {
         SceneManager.LoadScene(Globals.LearnMenu);
     }

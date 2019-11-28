@@ -10,6 +10,7 @@ static class Globals
     public static readonly string MainMenu = "Main Menu";
     public static readonly string LearnMenu = "Learn Menu";
     public static readonly string Video = "Video";
-    public static readonly string Train = "Practise";
+    public static readonly string Practice = "Practice";
+    public static readonly string Train = "Train";
     public static readonly string Calibration = "Calibration_final";
 }
