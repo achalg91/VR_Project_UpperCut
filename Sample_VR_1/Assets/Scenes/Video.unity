@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 1419881431}
   m_Layer: 0
   m_Name: TutorialVideos
-  m_TagString: Untagged
+  m_TagString: TutorialVid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -688,7 +688,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419881430}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: ddd4e4b7dac6bce4da0f6902f28cb422, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
