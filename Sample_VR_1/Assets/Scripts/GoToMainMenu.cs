@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuInteraction : MonoBehaviour
+public class GoToMainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -17,18 +17,8 @@ public class MenuInteraction : MonoBehaviour
         
     }
 
-    public void Calibrate()
+    public void MainMenu()
     {
-        SceneManager.LoadScene(Globals.Calibration);   
-    }
-
-    public void Train()
-    {
-        SceneManager.LoadScene(Globals.Train);
-    }
-
-    public void Learn()
-    {
-        SceneManager.LoadScene(Globals.LearnMenu);
+        SceneManager.LoadScene(Globals.MainMenu);
     }
 }
