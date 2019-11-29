@@ -259,12 +259,14 @@ public class PunchController : MonoBehaviour
     private void destroyRight(GameObject pt)
     {
         audio4.GetComponent<AudioSource>().Play();
+        PlayShoot(true);
         Destroy(pt);
     }
 
     private void destroyLeft(GameObject pt)
     {
         audio4.GetComponent<AudioSource>().Play();
+        PlayShoot(false);
         Destroy(pt);
     }
 
@@ -536,4 +538,24 @@ public class PunchController : MonoBehaviour
         
     }
 
+    /**
+     * Code to enable haptic
+     **/
+
+    public void PlayShoot(bool rightHanded)
+    {
+        if (rightHanded) StartCoroutine(Haptics(1, 1, 0.3f, true, false));
+        else StartCoroutine(Haptics(1, 1, 0.3f, false, true));
+    }
+
+    IEnumerator Haptics(float frequency, float amplitude, float duration, bool rightHand, bool leftHand)
+    {
+        if (rightHand) OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.RTouch);
+        if (leftHand) OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.LTouch);
+
+        yield return new WaitForSeconds(duration);
+
+        if (rightHand) OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+        if (leftHand) OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
+    }
 }
