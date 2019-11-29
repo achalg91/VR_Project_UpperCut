@@ -52,15 +52,12 @@ public class PunchSequence : MonoBehaviour
 
     public void frontHit()
     {
-        audio1.SetActive(true);
-        audio2.SetActive(false);
-
+        
     }
 
     public void backHit()
     {
-        audio1.SetActive(false);
-        audio2.SetActive(true);
+        
     }
 
     public GameObject Left()
@@ -92,5 +89,4 @@ public class PunchSequence : MonoBehaviour
         back.GetComponent<RegisterPunch>().SetLeft(left);
         this.started = true;
     }
-
 }

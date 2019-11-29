@@ -9,6 +9,8 @@ public class RegisterPunch : MonoBehaviour
     private bool punched;
     private bool set;
 
+    public GameObject audioInp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,12 +68,13 @@ public class RegisterPunch : MonoBehaviour
         //if (leftHand) OVRInput.SetControllerVibration(frequency, amplitude, OVRInput.Controller.LTouch);
 
         gameObject.GetComponentInChildren<ParticleExplosion>().alreadyExploded = false;
-        
+        audioInp.SetActive(true);
         yield return new WaitForSeconds(duration);
 
         //if (rightHand) OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
         //if (leftHand) OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
 
         this.gameObject.SetActive(false);
+        audioInp.SetActive(false);
     }
 }
