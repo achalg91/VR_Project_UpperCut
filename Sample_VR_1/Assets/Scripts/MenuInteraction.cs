@@ -17,6 +17,11 @@ public class MenuInteraction : MonoBehaviour
         
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(Globals.MainMenu);
+    }
+
     public void Calibrate()
     {
         SceneManager.LoadScene(Globals.Calibration);   
