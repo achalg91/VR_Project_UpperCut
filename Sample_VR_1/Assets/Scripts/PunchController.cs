@@ -6,10 +6,16 @@ using UnityEngine.SceneManagement;
 public class PunchController : MonoBehaviour
 {
 
+    private enum HandState { None = 1, Left, Right };
+
     [SerializeField]
     public GameObject jabPrefab;
     [SerializeField]
     public GameObject hookPrefab;
+
+    [SerializeField]
+    public GameObject hookRightPrefab;
+
     [SerializeField]
     public GameObject uppercutPrefab;
 
@@ -19,17 +25,23 @@ public class PunchController : MonoBehaviour
     private bool leftActive;
     private bool rightActive;
 
+    public GameObject eyeCamera;
+
     Transform refPoint;
 
-    private readonly int DEFAULT_ROUNDS = 2;
+    private Vector3 startPosition;
+
+    private readonly int DEFAULT_ROUNDS = 10;
 
     // Start is called before the first frame update
     void Start()
     {
         rounds = 0;
         completed = 0;
-        refPoint = Camera.main.transform;
+        
         Begin();
+
+        refPoint = eyeCamera.transform;
     }
 
     // Update is called once per frame
@@ -46,9 +58,15 @@ public class PunchController : MonoBehaviour
             {
                 Debug.Log("UPPERCUT: LEFT HIT!");
                 leftActive = false;
-                Destroy(punchTarget);
+                destroyLeft(punchTarget);
+
+                refPoint = eyeCamera.transform;
+
                 InitRight();
             }
+
+            updatePosition(HandState.Right, refPoint.position + new Vector3(-0.5f, 0, Globals.armLength * 0.67f));
+
         } else if (rightActive)
         {
             //Debug.Log("UPPERCUT: USER NEEDS TO HIT RIGHT");
@@ -56,10 +74,43 @@ public class PunchController : MonoBehaviour
             {
                 Debug.Log("UPPERCUT: RIGHT HIT!");
                 rightActive = false;
-                Destroy(punchTarget);
+                destroyRight(punchTarget);
+
+                refPoint = eyeCamera.transform;
+
                 CompleteRound();
             }
+
+            updatePosition(HandState.Left, refPoint.position + new Vector3(0.5f, 0, Globals.armLength * 0.67f));
         }
+    }
+
+    private void updatePosition(HandState handState, Vector3 newPosition)
+    {
+        if (punchTarget && Mathf.Abs(Vector3.Distance(punchTarget.transform.position, newPosition)) > 0.01f)
+        {
+            switch (handState)
+            {
+                case HandState.Left:
+                    punchTarget.transform.position = Vector3.Lerp(punchTarget.transform.position, newPosition, Time.deltaTime * 5.0f);
+                    break;
+                case HandState.Right:
+                    punchTarget.transform.position = Vector3.Lerp(punchTarget.transform.position, newPosition, Time.deltaTime * 5.0f);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void destroyRight(GameObject pt)
+    {
+        Destroy(pt);
+    }
+
+    private void destroyLeft(GameObject pt)
+    {
+        Destroy(pt);
     }
 
     private void Begin()
@@ -75,9 +126,11 @@ public class PunchController : MonoBehaviour
     private void InitLeft()
     {
         Debug.Log("UPPERCUT: CREATE LEFT OBJ");
-        punchTarget = Instantiate(hookPrefab);
-        punchTarget.transform.position = refPoint.position + refPoint.up - refPoint.right;// + (Camera.main.transform.forward * 0.1f) + (Camera.main.transform.up* 5.0f);
-        punchTarget.transform.localScale *= 10;
+
+        Vector3 startPos = eyeCamera.transform.position + 100.0f * Vector3.forward;
+
+        punchTarget = Instantiate(hookPrefab, startPos, Quaternion.identity);
+        
         punchTarget.GetComponent<PunchSequence>().Begin(true);
         leftActive = true;
     }
@@ -85,9 +138,11 @@ public class PunchController : MonoBehaviour
     private void InitRight()
     {
         Debug.Log("UPPERCUT: CREATE RIGHT OBJ");
-        punchTarget = Instantiate(hookPrefab.GetComponent<PunchSequence>().Right());
-        punchTarget.transform.position = refPoint.position + refPoint.up + refPoint.right;// + (Camera.main.transform.forward * 0.12f) + (Camera.main.transform.up * 5.0f); // + (Camera.main.transform.right * 2.0f) 
-        punchTarget.transform.localScale *= 10;
+
+        Vector3 startPos = eyeCamera.transform.position + 100.0f * Vector3.forward;
+
+        punchTarget = Instantiate(hookRightPrefab, startPos, Quaternion.identity);
+        
         punchTarget.GetComponent<PunchSequence>().Begin(false);
         rightActive = true;
     }
@@ -113,6 +168,5 @@ public class PunchController : MonoBehaviour
             this.rounds = x;
         }
     }
-
 
 }
