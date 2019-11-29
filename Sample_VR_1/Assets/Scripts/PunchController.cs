@@ -7,6 +7,7 @@ public class PunchController : MonoBehaviour
 {
 
     private enum HandState { None = 1, Left, Right };
+    public enum PunchState { Jab = 1, Hook, UpperCut, HookJab, JabUpper, UpperHook };
 
     [SerializeField]
     public GameObject jabPrefab;
@@ -19,6 +20,11 @@ public class PunchController : MonoBehaviour
     [SerializeField]
     public GameObject uppercutPrefab;
 
+
+    [SerializeField]
+    public GameObject uppercutRightPrefab;
+
+
     private int rounds;
     private int completed;
     private GameObject punchTarget;
@@ -26,6 +32,8 @@ public class PunchController : MonoBehaviour
     private bool rightActive;
 
     public GameObject eyeCamera;
+    public PunchState punchState;
+    private PunchState subPunchState;
 
     Transform refPoint;
 
@@ -65,7 +73,7 @@ public class PunchController : MonoBehaviour
                 InitRight();
             }
 
-            updatePosition(HandState.Right, refPoint.position + new Vector3(-0.5f, 0, Globals.armLength * 0.67f));
+            updatePunchPos(HandState.Left);
 
         } else if (rightActive)
         {
@@ -81,25 +89,159 @@ public class PunchController : MonoBehaviour
                 CompleteRound();
             }
 
-            updatePosition(HandState.Left, refPoint.position + new Vector3(0.5f, 0, Globals.armLength * 0.67f));
+            updatePunchPos(HandState.Right);
         }
     }
 
-    private void updatePosition(HandState handState, Vector3 newPosition)
+    private void updatePunchPos(HandState handState)
+    {
+        Vector3 newPos = refPoint.position;
+        switch (punchState)
+        {
+            case PunchState.Hook:
+                switch (handState)
+                {
+                    case HandState.Left:
+                        newPos = refPoint.position + new Vector3(-0.5f, 0, Globals.armLength * 0.67f);
+                        break;
+                    case HandState.Right:
+                        newPos = refPoint.position + new Vector3(0.5f, 0, Globals.armLength * 0.67f);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case PunchState.Jab:
+                switch (handState)
+                {
+                    case HandState.Left:
+                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                        break;
+                    case HandState.Right:
+                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case PunchState.UpperCut:
+                switch (handState)
+                {
+                    case HandState.Left:
+                        newPos = refPoint.position + new Vector3(-0.25f, -0.5f, Globals.armLength * 0.67f) ;
+                        break;
+                    case HandState.Right:
+                        newPos = refPoint.position + new Vector3(0.25f, -0.5f, Globals.armLength * 0.67f);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case PunchState.HookJab:
+                switch(subPunchState)
+                {
+                    case PunchState.Hook:
+                        switch (handState)
+                        {
+                            case HandState.Left:
+                                newPos = refPoint.position + new Vector3(-0.5f, 0, Globals.armLength * 0.67f);
+                                break;
+                            case HandState.Right:
+                                newPos = refPoint.position + new Vector3(0.5f, 0, Globals.armLength * 0.67f);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    default:
+                        switch (handState)
+                        {
+                            case HandState.Left:
+                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                                break;
+                            case HandState.Right:
+                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case PunchState.JabUpper:
+                switch(subPunchState)
+                {
+                    case PunchState.Jab:
+                        switch (handState)
+                        {
+                            case HandState.Left:
+                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                                break;
+                            case HandState.Right:
+                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    default:
+                        switch (handState)
+                        {
+                            case HandState.Left:
+                                newPos = refPoint.position + new Vector3(-0.25f, -0.5f, Globals.armLength * 0.67f);
+                                break;
+                            case HandState.Right:
+                                newPos = refPoint.position + new Vector3(0.25f, -0.5f, Globals.armLength * 0.67f);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case PunchState.UpperHook:
+                switch(subPunchState)
+                {
+                    case PunchState.UpperCut:
+                        switch (handState)
+                        {
+                            case HandState.Left:
+                                newPos = refPoint.position + new Vector3(-0.25f, -0.5f, Globals.armLength * 0.67f);
+                                break;
+                            case HandState.Right:
+                                newPos = refPoint.position + new Vector3(0.25f, -0.5f, Globals.armLength * 0.67f);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    default:
+                        switch (handState)
+                        {
+                            case HandState.Left:
+                                newPos = refPoint.position + new Vector3(-0.5f, 0, Globals.armLength * 0.67f);
+                                break;
+                            case HandState.Right:
+                                newPos = refPoint.position + new Vector3(0.5f, 0, Globals.armLength * 0.67f);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+
+        updateHandPos(newPos);
+    }
+
+    private void updateHandPos(Vector3 newPosition)
     {
         if (punchTarget && Mathf.Abs(Vector3.Distance(punchTarget.transform.position, newPosition)) > 0.01f)
         {
-            switch (handState)
-            {
-                case HandState.Left:
-                    punchTarget.transform.position = Vector3.Lerp(punchTarget.transform.position, newPosition, Time.deltaTime * 5.0f);
-                    break;
-                case HandState.Right:
-                    punchTarget.transform.position = Vector3.Lerp(punchTarget.transform.position, newPosition, Time.deltaTime * 5.0f);
-                    break;
-                default:
-                    break;
-            }
+            punchTarget.transform.position = Vector3.Lerp(punchTarget.transform.position, newPosition, Time.deltaTime * 5.0f);
         }
     }
 
@@ -127,9 +269,7 @@ public class PunchController : MonoBehaviour
     {
         Debug.Log("UPPERCUT: CREATE LEFT OBJ");
 
-        Vector3 startPos = eyeCamera.transform.position + 100.0f * Vector3.forward;
-
-        punchTarget = Instantiate(hookPrefab, startPos, Quaternion.identity);
+        punchTarget = initPunchObjLeft();
         
         punchTarget.GetComponent<PunchSequence>().Begin(true);
         leftActive = true;
@@ -139,12 +279,131 @@ public class PunchController : MonoBehaviour
     {
         Debug.Log("UPPERCUT: CREATE RIGHT OBJ");
 
-        Vector3 startPos = eyeCamera.transform.position + 100.0f * Vector3.forward;
-
-        punchTarget = Instantiate(hookRightPrefab, startPos, Quaternion.identity);
+        punchTarget = initPunchObjRight();
         
         punchTarget.GetComponent<PunchSequence>().Begin(false);
         rightActive = true;
+    }
+
+    private GameObject initPunchObjLeft()
+    {
+        Vector3 startPos = eyeCamera.transform.position + 100.0f * Vector3.forward;
+        GameObject ret;
+
+        switch(punchState)
+        {
+            case PunchState.Hook:
+                ret = Instantiate(hookPrefab, startPos, Quaternion.identity);
+                break;
+            case PunchState.Jab:
+                ret = Instantiate(jabPrefab, startPos, Quaternion.identity);
+                break;
+            case PunchState.UpperCut:
+                ret = Instantiate(uppercutPrefab, startPos, Quaternion.identity);
+                break;
+            case PunchState.HookJab:
+                switch(subPunchState)
+                {
+                    case PunchState.Hook:
+                        ret = Instantiate(hookPrefab, startPos, Quaternion.identity);
+                        break;
+                    default:
+                        ret = Instantiate(jabPrefab, startPos, Quaternion.identity);
+                        break;
+
+                }
+                break;
+            case PunchState.JabUpper:
+                switch (subPunchState)
+                {
+                    case PunchState.Jab:
+                        ret = Instantiate(jabPrefab, startPos, Quaternion.identity);
+                        break;
+                    default:
+                        ret = Instantiate(uppercutPrefab, startPos, Quaternion.identity);
+                        break;
+
+                }
+                break;
+            case PunchState.UpperHook:
+                switch (subPunchState)
+                {
+                    case PunchState.UpperCut:
+                        ret = Instantiate(uppercutPrefab, startPos, Quaternion.identity);
+                        break;
+                    default:
+                        ret = Instantiate(hookPrefab, startPos, Quaternion.identity);
+                        break;
+
+                }
+                break;
+
+            default:
+                ret = Instantiate(hookPrefab, startPos, Quaternion.identity);
+                break;
+        }
+
+        return ret;
+    }
+
+    private GameObject initPunchObjRight()
+    {
+        Vector3 startPos = eyeCamera.transform.position + 100.0f * Vector3.forward;
+        GameObject ret;
+
+        switch (punchState)
+        {
+            case PunchState.Hook:
+                ret = Instantiate(hookRightPrefab, startPos, Quaternion.identity);
+                break;
+            case PunchState.Jab:
+                ret = Instantiate(jabPrefab, startPos, Quaternion.identity);
+                break;
+            case PunchState.UpperCut:
+                ret = Instantiate(uppercutRightPrefab, startPos, Quaternion.identity);
+                break;
+            case PunchState.HookJab:
+                switch (subPunchState)
+                {
+                    case PunchState.Hook:
+                        ret = Instantiate(hookRightPrefab, startPos, Quaternion.identity);
+                        break;
+                    default:
+                        ret = Instantiate(jabPrefab, startPos, Quaternion.identity);
+                        break;
+
+                }
+                break;
+            case PunchState.JabUpper:
+                switch (subPunchState)
+                {
+                    case PunchState.Jab:
+                        ret = Instantiate(jabPrefab, startPos, Quaternion.identity);
+                        break;
+                    default:
+                        ret = Instantiate(uppercutRightPrefab, startPos, Quaternion.identity);
+                        break;
+
+                }
+                break;
+            case PunchState.UpperHook:
+                switch (subPunchState)
+                {
+                    case PunchState.UpperCut:
+                        ret = Instantiate(uppercutRightPrefab, startPos, Quaternion.identity);
+                        break;
+                    default:
+                        ret = Instantiate(hookRightPrefab, startPos, Quaternion.identity);
+                        break;
+
+                }
+                break;
+            default:
+                ret = Instantiate(hookRightPrefab, startPos, Quaternion.identity);
+                break;
+        }
+
+        return ret;
     }
 
     private void CompleteRound()
@@ -153,12 +412,14 @@ public class PunchController : MonoBehaviour
         Debug.Log("UPPERCUT: ROUND " + completed + " COMPLETE");
         if (rounds > completed)
         {
+            updateSubPunchState();
             InitLeft();
         }
         else
         {
             SceneManager.LoadScene("Menu");
         }
+        
     }
 
     public void SetRounds(int x)
@@ -166,6 +427,34 @@ public class PunchController : MonoBehaviour
         if (x >= 0)
         {
             this.rounds = x;
+        }
+    }
+
+    private void updateSubPunchState()
+    {
+        switch(punchState)
+        {
+            case PunchState.HookJab:
+                if(completed % 2 == 0)
+                    subPunchState = PunchState.Hook;
+                else
+                    subPunchState = PunchState.Jab;
+                break;
+            case PunchState.JabUpper:
+                if (completed % 2 == 0)
+                    subPunchState = PunchState.Jab;
+                else
+                    subPunchState = PunchState.UpperCut;
+                break;
+            case PunchState.UpperHook:
+                if (completed % 2 == 0)
+                    subPunchState = PunchState.UpperCut;
+                else
+                    subPunchState = PunchState.Hook;
+                break;
+            default:
+                subPunchState = punchState;
+                break;
         }
     }
 

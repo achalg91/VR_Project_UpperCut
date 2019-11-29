@@ -1316,9 +1316,12 @@ MonoBehaviour:
     type: 3}
   hookRightPrefab: {fileID: 6111826732263911256, guid: 9dd9973e0954f4f27bb2477c2c8c9aff,
     type: 3}
-  uppercutPrefab: {fileID: 9200755812355053471, guid: ba23d0a5e66f9e24e87b05b939f33535,
+  uppercutPrefab: {fileID: 6111826732263911256, guid: f4c149415e522467980b15bc6d84307f,
+    type: 3}
+  uppercutRightPrefab: {fileID: 6111826732263911256, guid: bf3035cced01744dbb197e8af310ebc3,
     type: 3}
   eyeCamera: {fileID: 1106332162}
+  punchState: 0
 --- !u!4 &1660977773
 Transform:
   m_ObjectHideFlags: 0
