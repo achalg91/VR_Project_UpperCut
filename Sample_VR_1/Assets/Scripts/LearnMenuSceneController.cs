@@ -40,19 +40,19 @@ public class LearnMenuSceneController : MonoBehaviour
     public void JabPractice()
     {
         Globals.LearnMenuInformation = "Jab";
-        LoadPracticeScene()
+        LoadPracticeScene();
     }
 
     public void HookPractice()
     {
         Globals.LearnMenuInformation = "Hook";
-        LoadPracticeScene()
+        LoadPracticeScene();
     }
 
     public void UpperCutPractice()
     {
         Globals.LearnMenuInformation = "UpperCut";
-        LoadPracticeScene()
+        LoadPracticeScene();
     }
 
     void LoadTutorialScene()
