@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PunchController : MonoBehaviour
 {
@@ -20,10 +21,16 @@ public class PunchController : MonoBehaviour
     [SerializeField]
     public GameObject uppercutPrefab;
 
+    public GameObject audio1;
+    public GameObject audio2;
+    public GameObject audio3;
+    public GameObject audio4;
+
 
     [SerializeField]
     public GameObject uppercutRightPrefab;
 
+    public GameObject handIndicator;
 
     private int rounds;
     private int completed;
@@ -34,6 +41,8 @@ public class PunchController : MonoBehaviour
     public GameObject eyeCamera;
     public PunchState punchState;
     private PunchState subPunchState;
+
+    private float speed;
 
     Transform refPoint;
 
@@ -50,6 +59,8 @@ public class PunchController : MonoBehaviour
         Begin();
 
         refPoint = eyeCamera.transform;
+
+        speed = 5.0f;
     }
 
     // Update is called once per frame
@@ -241,17 +252,19 @@ public class PunchController : MonoBehaviour
     {
         if (punchTarget && Mathf.Abs(Vector3.Distance(punchTarget.transform.position, newPosition)) > 0.01f)
         {
-            punchTarget.transform.position = Vector3.Lerp(punchTarget.transform.position, newPosition, Time.deltaTime * 5.0f);
+            punchTarget.transform.position = Vector3.Lerp(punchTarget.transform.position, newPosition, Time.deltaTime * speed);
         }
     }
 
     private void destroyRight(GameObject pt)
     {
+        audio4.GetComponent<AudioSource>().Play();
         Destroy(pt);
     }
 
     private void destroyLeft(GameObject pt)
     {
+        audio4.GetComponent<AudioSource>().Play();
         Destroy(pt);
     }
 
@@ -262,6 +275,7 @@ public class PunchController : MonoBehaviour
         {
             rounds = DEFAULT_ROUNDS;
         }
+        updateSubPunchState();
         InitLeft();
     }
 
@@ -269,6 +283,7 @@ public class PunchController : MonoBehaviour
     {
         Debug.Log("UPPERCUT: CREATE LEFT OBJ");
 
+        handIndicator.GetComponentInChildren<Text>().text = "LEFT";
         punchTarget = initPunchObjLeft();
         
         punchTarget.GetComponent<PunchSequence>().Begin(true);
@@ -279,6 +294,7 @@ public class PunchController : MonoBehaviour
     {
         Debug.Log("UPPERCUT: CREATE RIGHT OBJ");
 
+        handIndicator.GetComponentInChildren<Text>().text = "RIGHT";
         punchTarget = initPunchObjRight();
         
         punchTarget.GetComponent<PunchSequence>().Begin(false);
@@ -417,7 +433,7 @@ public class PunchController : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Menu");
+            handIndicator.GetComponentInChildren<Text>().text = "RESTART";
         }
         
     }
@@ -456,6 +472,68 @@ public class PunchController : MonoBehaviour
                 subPunchState = punchState;
                 break;
         }
+
+        playAudio();
+    }
+
+    private void playAudio() 
+    {
+        if (audio1 && audio2 && audio3)
+        {
+            switch (subPunchState)
+            {
+                case PunchState.Hook:
+                    audio1.SetActive(true);
+                    audio2.SetActive(false);
+                    audio3.SetActive(false);
+                    break;
+                case PunchState.Jab:
+                    audio1.SetActive(false);
+                    audio2.SetActive(true);
+                    audio3.SetActive(false);
+                    break;
+                case PunchState.UpperCut:
+                    audio1.SetActive(false);
+                    audio2.SetActive(false);
+                    audio3.SetActive(true);
+                    break;
+
+                default:
+                    break;
+
+            }
+        }
+    }
+
+    public void setLevel1()
+    {
+        speed = 5.0f;
+    }
+
+    public void setLevel2()
+    {
+        speed = 10.0f;
+    }
+
+    public void setLevel3()
+    {
+        speed = 15.0f;
+    }
+
+    public void Reset()
+    {
+        if(completed >= rounds)
+        {
+            destroyLeft(punchTarget);
+
+            rounds = 0;
+            completed = 0;
+
+            Begin();
+
+            refPoint = eyeCamera.transform;
+        }
+        
     }
 
 }

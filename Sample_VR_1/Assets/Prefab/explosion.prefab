@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 1
-  sparkVelocity: {x: 10, y: 10, z: 10}
+  sparkVelocity: {x: 5, y: 5, z: 5}
   shrinkSmooth: 10
 --- !u!54 &4131722479525056042
 Rigidbody:
