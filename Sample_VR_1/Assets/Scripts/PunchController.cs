@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,7 +26,7 @@ public class PunchController : MonoBehaviour
     public GameObject audio2;
     public GameObject audio3;
     public GameObject audio4;
-
+    System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
 
     [SerializeField]
     public GameObject uppercutRightPrefab;
@@ -36,7 +38,7 @@ public class PunchController : MonoBehaviour
     private GameObject punchTarget;
     private bool leftActive;
     private bool rightActive;
-
+    private float timeStart, timeEnd, totalScore;
     public GameObject eyeCamera;
     public PunchState punchState;
     private PunchState subPunchState;
@@ -50,7 +52,7 @@ public class PunchController : MonoBehaviour
     private readonly int DEFAULT_ROUNDS = 10;
 
     public GameObject scoreFlyPrefab;
-    private int totalScore;
+    
     private List<ScoreStack> scoreStack;
 
     private bool updatingScore;
@@ -125,10 +127,10 @@ public class PunchController : MonoBehaviour
                 switch (handState)
                 {
                     case HandState.Left:
-                        newPos = refPoint.position + new Vector3(-0.5f, 0, Globals.armLength * 0.67f);
+                        newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
                         break;
                     case HandState.Right:
-                        newPos = refPoint.position + new Vector3(0.5f, 0, Globals.armLength * 0.67f);
+                        newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
                         break;
                     default:
                         break;
@@ -167,10 +169,10 @@ public class PunchController : MonoBehaviour
                         switch (handState)
                         {
                             case HandState.Left:
-                                newPos = refPoint.position + new Vector3(-0.5f, 0, Globals.armLength * 0.67f);
+                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
                                 break;
                             case HandState.Right:
-                                newPos = refPoint.position + new Vector3(0.5f, 0, Globals.armLength * 0.67f);
+                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
                                 break;
                             default:
                                 break;
@@ -265,7 +267,7 @@ public class PunchController : MonoBehaviour
         if (punchTarget && Mathf.Abs(Vector3.Distance(punchTarget.transform.position, newPosition)) > 0.01f)
         {
             punchTarget.transform.position = Vector3.Lerp(punchTarget.transform.position, newPosition, Time.deltaTime * speed);
-        }
+        } 
     }
 
     private void updateScoreObjs()
@@ -299,42 +301,58 @@ public class PunchController : MonoBehaviour
     private void destroyRight(GameObject pt)
     {
         
-        GameObject scoreFlyObj;
-        scoreFlyObj = Instantiate(scoreFlyPrefab, pt.transform.position, Quaternion.identity);
-        var newPos = pt.transform.position + 10.0f * Vector3.up;
+     
+        if (punchState == PunchState.HookJab || punchState == PunchState.JabUpper || punchState == PunchState.UpperHook)
+        {
+            GameObject scoreFlyObj;
+            scoreFlyObj = Instantiate(scoreFlyPrefab, pt.transform.position, Quaternion.identity);
+            var newPos = pt.transform.position + 10.0f * Vector3.up;
 
-        ScoreStack scoreStackObj = new ScoreStack();
-        scoreStackObj.gameobject = scoreFlyObj;
-        scoreStackObj.newPos = newPos;
-        scoreStack.Add(scoreStackObj);
+            ScoreStack scoreStackObj = new ScoreStack();
+            scoreStackObj.gameobject = scoreFlyObj;
+            scoreStackObj.newPos = newPos;
+            scoreStack.Add(scoreStackObj);
+            stopWatch.Stop();
+            timeEnd = scaleTimeEndToPoints(stopWatch.ElapsedMilliseconds);
 
-        scoreFlyObj.GetComponentInChildren<TextMesh>().text = "+100 pts";
-        totalScore += 100;
-        scoreFlyObj.transform.position = Vector3.Lerp(scoreFlyObj.transform.position, newPos, Time.deltaTime * 0.05f);
-        destroyScoreInFewSecs(scoreFlyObj);
-        
+            scoreFlyObj.GetComponentInChildren<TextMesh>().text = "+" + timeEnd + " pts";
+            totalScore += timeEnd;
+            scoreFlyObj.transform.position = Vector3.Lerp(scoreFlyObj.transform.position, newPos, Time.deltaTime * 0.05f);
+            destroyScoreInFewSecs(scoreFlyObj);
+        }
         audio4.GetComponent<AudioSource>().Play();
         PlayShoot(true);
         Destroy(pt);
     }
 
+    private float scaleTimeEndToPoints(long elapsedMilliseconds)
+    {
+        //return elapsedMilliseconds;
+        float inv = 1.0f / elapsedMilliseconds;
+        return (int)(inv*10000);
+        //return inv * 100000;
+    }
+
     private void destroyLeft(GameObject pt)
     {
-        
-        GameObject scoreFlyObj;
-        scoreFlyObj = Instantiate(scoreFlyPrefab, pt.transform.position, Quaternion.identity);
-        var newPos = pt.transform.position + 10.0f * Vector3.up;
+        if (punchState == PunchState.HookJab || punchState == PunchState.JabUpper || punchState == PunchState.UpperHook)
+        {
+            GameObject scoreFlyObj;
+            scoreFlyObj = Instantiate(scoreFlyPrefab, pt.transform.position, Quaternion.identity);
+            var newPos = pt.transform.position + 10.0f * Vector3.up;
 
-        ScoreStack scoreStackObj = new ScoreStack();
-        scoreStackObj.gameobject = scoreFlyObj;
-        scoreStackObj.newPos = newPos;
-        scoreStack.Add(scoreStackObj);
+            ScoreStack scoreStackObj = new ScoreStack();
+            scoreStackObj.gameobject = scoreFlyObj;
+            scoreStackObj.newPos = newPos;
+            scoreStack.Add(scoreStackObj);
+            stopWatch.Stop();
+            timeEnd = scaleTimeEndToPoints(stopWatch.ElapsedMilliseconds);
+            scoreFlyObj.GetComponentInChildren<TextMesh>().text = "+" + timeEnd + " pts";
 
-        scoreFlyObj.GetComponentInChildren<TextMesh>().text = "+100 pts";
-        totalScore += 100;
-        scoreFlyObj.transform.position = Vector3.Lerp(scoreFlyObj.transform.position, newPos, Time.deltaTime * 0.05f);
-        destroyScoreInFewSecs(scoreFlyObj);
-        
+            totalScore += timeEnd;
+            scoreFlyObj.transform.position = Vector3.Lerp(scoreFlyObj.transform.position, newPos, Time.deltaTime * 0.05f);
+            destroyScoreInFewSecs(scoreFlyObj);
+        }
         audio4.GetComponent<AudioSource>().Play();
         PlayShoot(false);
         Destroy(pt);
@@ -355,7 +373,8 @@ public class PunchController : MonoBehaviour
     private void InitLeft()
     {
         Debug.Log("UPPERCUT: CREATE LEFT OBJ");
-
+        stopWatch.Reset();
+        stopWatch.Start();
         handIndicator.GetComponentInChildren<Text>().text = "LEFT. " + totalScore.ToString() + " pts";
         punchTarget = initPunchObjLeft();
         
@@ -366,7 +385,8 @@ public class PunchController : MonoBehaviour
     private void InitRight()
     {
         Debug.Log("UPPERCUT: CREATE RIGHT OBJ");
-
+        stopWatch.Reset();
+        stopWatch.Start();
         handIndicator.GetComponentInChildren<Text>().text = "RIGHT. " + totalScore.ToString() + " pts";
         punchTarget = initPunchObjRight();
         

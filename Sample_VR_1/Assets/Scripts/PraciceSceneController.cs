@@ -89,6 +89,15 @@ public class PraciceSceneController : MonoBehaviour
             case "UpperCut":
                 punchState = PunchController.PunchState.UpperCut;
                 break;
+            case "HookJab":
+                punchState = PunchController.PunchState.HookJab;
+                break;
+            case "JabUpper":
+                punchState = PunchController.PunchState.JabUpper;
+                break;
+            case "UpperHook":
+                punchState = PunchController.PunchState.UpperHook;
+                break;
             default:
                 break;
         }

@@ -42,19 +42,24 @@ public class MenuInteraction : MonoBehaviour
         SceneManager.LoadScene(Globals.LearnMenu);
     }
 
+
     public void Combo1()
     {
-        SceneManager.LoadScene(Globals.COMBO_HOOKJAB);
+        Globals.LearnMenuInformation = Globals.COMBO_HOOKJAB;
+        SceneManager.LoadScene(Globals.Train);
     }
 
     public void Combo2()
     {
-        SceneManager.LoadScene(Globals.COMBO_JABUPPER);
+        Globals.LearnMenuInformation = Globals.COMBO_JABUPPER;
+        SceneManager.LoadScene(Globals.Train);
+       
     }
 
     public void Combo3()
     {
-        SceneManager.LoadScene(Globals.COMBO_UPPERHOOK);
+        Globals.LearnMenuInformation = Globals.COMBO_UPPERHOOK;
+        SceneManager.LoadScene(Globals.Train);
     }
 
     public void Jab()
