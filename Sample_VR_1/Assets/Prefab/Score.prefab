@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7107c7963d16149b5a2b089a457ede56, type: 2}
+  - {fileID: 2100000, guid: 8603efedaef202549866eef3bf1a7b0a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,7 +184,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4283027337
+    rgba: 4294442489
 --- !u!1 &6111826732263911256
 GameObject:
   m_ObjectHideFlags: 0
