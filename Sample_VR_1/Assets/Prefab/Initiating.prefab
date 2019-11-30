@@ -285,14 +285,14 @@ RectTransform:
   m_GameObject: {fileID: 1608635468731839289}
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.1}
-  m_LocalScale: {x: 0.05345868, y: 0.052539594, z: 0.08}
+  m_LocalScale: {x: 0.05236388, y: 0.041133247, z: 0.08}
   m_Children: []
   m_Father: {fileID: 1608635468997159809}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.73, y: 3.8}
+  m_AnchoredPosition: {x: 13.56, y: 5.43}
   m_SizeDelta: {x: 479.5, y: 289}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1608635468731839302
@@ -366,7 +366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.843, y: -0.6}
+  m_AnchoredPosition: {x: -0.88, y: -0.6}
   m_SizeDelta: {x: 30, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1608635468997159823
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 2.5
+  m_fontSize: 2.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 17.182224, y: 0, z: -14.050608, w: 9.807264}
+  m_margin: {x: 17.182224, y: 0, z: -10.534865, w: 9.807264}
   m_textInfo:
     textComponent: {fileID: 1608635468997159808}
     characterCount: 48
