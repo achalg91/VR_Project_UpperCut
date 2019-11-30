@@ -329,7 +329,7 @@ public class PunchController : MonoBehaviour
     {
         //return elapsedMilliseconds;
         float inv = 1.0f / elapsedMilliseconds;
-        return (int)(inv*10000);
+        return (int)(inv*100000);
         //return inv * 100000;
     }
 
