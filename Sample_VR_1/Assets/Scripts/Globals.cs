@@ -14,6 +14,7 @@ static class Globals
     public static readonly string Practice = "Practice";
     public static readonly string Calibration = "Calibration_final";
     public static readonly string TrainMenu = "Train Menu";
+    public static readonly string Train = "Train";
     public static readonly string COMBO_HOOKJAB = "HookJab";
     public static readonly string COMBO_JABUPPER = "JabUpper";
     public static readonly string COMBO_UPPERHOOK = "UpperHook";
