@@ -59,7 +59,7 @@ public class PraciceSceneController : MonoBehaviour
                 m_timerEnded = true;
                 display.SetActive(false);
                 InitiatingDone = true;
-                punchController.GetComponent<PunchController>().Begin(getPunchState());
+                StartCoroutine(StartPunch());
             }
 
             yield return new WaitForSeconds(1.0f);
@@ -74,7 +74,13 @@ public class PraciceSceneController : MonoBehaviour
         m_timerEnded = true;
         m_timerRunning = false;
     }
-    
+
+    private IEnumerator StartPunch()
+    {
+        yield return new WaitForSeconds(2.0f);
+        punchController.GetComponent<PunchController>().Begin(getPunchState());
+    }
+
     private PunchController.PunchState getPunchState()
     {
         PunchController.PunchState punchState = PunchController.PunchState.Jab;
