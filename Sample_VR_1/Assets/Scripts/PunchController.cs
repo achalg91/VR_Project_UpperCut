@@ -244,10 +244,10 @@ public class PunchController : MonoBehaviour
                         switch (handState)
                         {
                             case HandState.Left:
-                                newPos = refPoint.position + new Vector3(-0.5f, 0, Globals.armLength * 0.67f);
+                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
                                 break;
                             case HandState.Right:
-                                newPos = refPoint.position + new Vector3(0.5f, 0, Globals.armLength * 0.67f);
+                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
                                 break;
                             default:
                                 break;
@@ -329,7 +329,7 @@ public class PunchController : MonoBehaviour
     {
         //return elapsedMilliseconds;
         float inv = 1.0f / elapsedMilliseconds;
-        return (int)(inv*10000);
+        return (int)(inv*100000);
         //return inv * 100000;
     }
 
