@@ -22,6 +22,11 @@ public class MenuInteraction : MonoBehaviour
         SceneManager.LoadScene(Globals.MainMenu);
     }
 
+    public void Practice()
+    {
+        SceneManager.LoadScene(Globals.Practice);
+    }
+
     public void Calibrate()
     {
         SceneManager.LoadScene(Globals.Calibration);   
