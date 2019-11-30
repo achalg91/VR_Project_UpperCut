@@ -682,6 +682,66 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: setLevel3
       objectReference: {fileID: 0}
+    - target: {fileID: 3701832961157062108, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832961157062108, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832961157062108, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.37166253
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832961157062108, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.37166253
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832961599721541, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.050980415
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832961599721541, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832961599721541, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.55578476
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832961599721541, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832962143643875, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832962143643875, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9339623
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832962143643875, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6233449
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701832962143643875, guid: c5e1a2bcfd3be41a68be843ca4c4e02f,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.23349057
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5e1a2bcfd3be41a68be843ca4c4e02f, type: 3}
 --- !u!1001 &1142004173
@@ -801,21 +861,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1608635468436386151, guid: efd3ff11437700f46b5e63aeb5b2b05c,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 165483094}
-    - target: {fileID: 1608635468436386151, guid: efd3ff11437700f46b5e63aeb5b2b05c,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Train
-      objectReference: {fileID: 0}
-    - target: {fileID: 1608635470079142501, guid: efd3ff11437700f46b5e63aeb5b2b05c,
-        type: 3}
-      propertyPath: punchController
-      value: 
-      objectReference: {fileID: 1941741068}
     - target: {fileID: 1608635468997159809, guid: efd3ff11437700f46b5e63aeb5b2b05c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -846,6 +891,21 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1608635468436386151, guid: efd3ff11437700f46b5e63aeb5b2b05c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 165483094}
+    - target: {fileID: 1608635468436386151, guid: efd3ff11437700f46b5e63aeb5b2b05c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Train
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608635470079142501, guid: efd3ff11437700f46b5e63aeb5b2b05c,
+        type: 3}
+      propertyPath: punchController
+      value: 
+      objectReference: {fileID: 1941741068}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efd3ff11437700f46b5e63aeb5b2b05c, type: 3}
 --- !u!1001 &1180056674
