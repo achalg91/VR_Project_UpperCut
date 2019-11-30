@@ -3070,8 +3070,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377031116}
-        m_MethodName: Jab
+      - m_Target: {fileID: 1377031113}
+        m_MethodName: JabPractice
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3426,8 +3426,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377031116}
-        m_MethodName: Hook
+      - m_Target: {fileID: 1377031113}
+        m_MethodName: HookPractice
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4593,8 +4593,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377031113}
-        m_MethodName: JabTutorial
+      - m_Target: {fileID: 1377031116}
+        m_MethodName: Practice
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

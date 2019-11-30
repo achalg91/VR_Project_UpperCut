@@ -63,7 +63,7 @@ public class PunchController : MonoBehaviour
         rounds = 0;
         completed = 0;
         
-        Begin();
+        //Begin();
 
         refPoint = eyeCamera.transform;
 
@@ -340,13 +340,14 @@ public class PunchController : MonoBehaviour
         Destroy(pt);
     }
 
-    private void Begin()
+    public void Begin(PunchState punchState)
     {
         Debug.Log("UPPERCUT: GAME BEGIN");
         if (rounds <= 0)
         {
             rounds = DEFAULT_ROUNDS;
         }
+        this.punchState = punchState;
         updateSubPunchState();
         InitLeft();
     }
@@ -603,7 +604,7 @@ public class PunchController : MonoBehaviour
             rounds = 0;
             completed = 0;
 
-            Begin();
+            Begin(this.punchState);
 
             refPoint = eyeCamera.transform;
         }

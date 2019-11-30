@@ -7,7 +7,8 @@ using UnityEngine;
 public class PraciceSceneController : MonoBehaviour
 {
 
-    public TextMeshProUGUI display;
+    public TextMeshProUGUI displayText;
+    public GameObject display;
     public AudioSource audioSource;
     public AudioClip initiating, letsGo;
     private string letsGoText = "LET'S GO!!";
@@ -15,6 +16,9 @@ public class PraciceSceneController : MonoBehaviour
     private bool m_timerStarted;
     private bool m_timerEnded;
     private int m_timerCount = 3;
+    public GameObject punchController;
+
+    public bool InitiatingDone { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -47,13 +51,15 @@ public class PraciceSceneController : MonoBehaviour
         while (m_timerCount > -1 && !m_timerEnded)
         {
             if (m_timerCount > 0)
-                display.text = "" + m_timerCount--;
+                displayText.text = "" + m_timerCount--;
             else
             {
-                display.text = letsGoText;
+                displayText.text = letsGoText;
                 audioSource.PlayOneShot(letsGo);
                 m_timerEnded = true;
-                
+                display.SetActive(false);
+                InitiatingDone = true;
+                punchController.GetComponent<PunchController>().Begin(getPunchState());
             }
 
             yield return new WaitForSeconds(1.0f);
@@ -63,9 +69,29 @@ public class PraciceSceneController : MonoBehaviour
     private IEnumerator DisplayLetsGo()
     {
         yield return new WaitForSeconds(2.0f);
-        display.text = letsGoText;
+        displayText.text = letsGoText;
         audioSource.PlayOneShot(letsGo);
         m_timerEnded = true;
         m_timerRunning = false;
-    }   
+    }
+    
+    private PunchController.PunchState getPunchState()
+    {
+        PunchController.PunchState punchState = PunchController.PunchState.Jab;
+        switch (Globals.LearnMenuInformation)
+        {
+            case "Jab":
+                punchState =  PunchController.PunchState.Jab;
+                break;
+            case "Hook":
+                punchState = PunchController.PunchState.Hook;
+                break;
+            case "UpperCut":
+                punchState = PunchController.PunchState.UpperCut;
+                break;
+            default:
+                break;
+        }
+        return punchState;
+    }
 }
