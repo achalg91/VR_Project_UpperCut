@@ -1273,6 +1273,8 @@ MonoBehaviour:
   handIndicator: {fileID: 354984457}
   eyeCamera: {fileID: 459944126}
   punchState: 6
+  scoreFlyPrefab: {fileID: 6111826732263911256, guid: fdc38802c1c5a43cba79ad2f77dfa45b,
+    type: 3}
 --- !u!4 &1201662490
 Transform:
   m_ObjectHideFlags: 0

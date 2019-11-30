@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PunchController : MonoBehaviour
 {
-
     private enum HandState { None = 1, Left, Right };
     public enum PunchState { Jab = 1, Hook, UpperCut, HookJab, JabUpper, UpperHook };
 
@@ -50,9 +49,17 @@ public class PunchController : MonoBehaviour
 
     private readonly int DEFAULT_ROUNDS = 10;
 
+    public GameObject scoreFlyPrefab;
+    private int totalScore;
+    private List<ScoreStack> scoreStack;
+
+    private bool updatingScore;
+
     // Start is called before the first frame update
     void Start()
     {
+        scoreStack = new List<ScoreStack>();
+        totalScore = 0;
         rounds = 0;
         completed = 0;
         
@@ -61,11 +68,15 @@ public class PunchController : MonoBehaviour
         refPoint = eyeCamera.transform;
 
         speed = 5.0f;
+
+        updatingScore = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        updateScoreObjs();
+
         if (punchTarget == null)
         {
             return;
@@ -101,6 +112,7 @@ public class PunchController : MonoBehaviour
             }
 
             updatePunchPos(HandState.Right);
+            
         }
     }
 
@@ -256,8 +268,51 @@ public class PunchController : MonoBehaviour
         }
     }
 
+    private void updateScoreObjs()
+    {
+        if(!updatingScore)
+        {
+            updatingScore = true;
+
+            for (int i = 0; i < scoreStack.Count; i++)
+            {
+                scoreStack[i].gameobject.transform.position = Vector3.Lerp(scoreStack[i].gameobject.transform.position
+                    , scoreStack[i].newPos, Time.deltaTime * 0.05f);
+            }
+
+            updatingScore = false;
+        }
+    }
+
+    private void removeFromScoreStack(GameObject remObj)
+    {
+        for (int i = 0; i < scoreStack.Count; i++)
+        {
+            if(remObj.Equals(scoreStack[i].gameobject))
+            {
+                scoreStack.RemoveAt(i);
+                return;
+            }
+        }
+    }
+
     private void destroyRight(GameObject pt)
     {
+        
+        GameObject scoreFlyObj;
+        scoreFlyObj = Instantiate(scoreFlyPrefab, pt.transform.position, Quaternion.identity);
+        var newPos = pt.transform.position + 10.0f * Vector3.up;
+
+        ScoreStack scoreStackObj = new ScoreStack();
+        scoreStackObj.gameobject = scoreFlyObj;
+        scoreStackObj.newPos = newPos;
+        scoreStack.Add(scoreStackObj);
+
+        scoreFlyObj.GetComponentInChildren<TextMesh>().text = "+100 pts";
+        totalScore += 100;
+        scoreFlyObj.transform.position = Vector3.Lerp(scoreFlyObj.transform.position, newPos, Time.deltaTime * 0.05f);
+        destroyScoreInFewSecs(scoreFlyObj);
+        
         audio4.GetComponent<AudioSource>().Play();
         PlayShoot(true);
         Destroy(pt);
@@ -265,6 +320,21 @@ public class PunchController : MonoBehaviour
 
     private void destroyLeft(GameObject pt)
     {
+        
+        GameObject scoreFlyObj;
+        scoreFlyObj = Instantiate(scoreFlyPrefab, pt.transform.position, Quaternion.identity);
+        var newPos = pt.transform.position + 10.0f * Vector3.up;
+
+        ScoreStack scoreStackObj = new ScoreStack();
+        scoreStackObj.gameobject = scoreFlyObj;
+        scoreStackObj.newPos = newPos;
+        scoreStack.Add(scoreStackObj);
+
+        scoreFlyObj.GetComponentInChildren<TextMesh>().text = "+100 pts";
+        totalScore += 100;
+        scoreFlyObj.transform.position = Vector3.Lerp(scoreFlyObj.transform.position, newPos, Time.deltaTime * 0.05f);
+        destroyScoreInFewSecs(scoreFlyObj);
+        
         audio4.GetComponent<AudioSource>().Play();
         PlayShoot(false);
         Destroy(pt);
@@ -285,7 +355,7 @@ public class PunchController : MonoBehaviour
     {
         Debug.Log("UPPERCUT: CREATE LEFT OBJ");
 
-        handIndicator.GetComponentInChildren<Text>().text = "LEFT";
+        handIndicator.GetComponentInChildren<Text>().text = "LEFT. " + totalScore.ToString() + " pts";
         punchTarget = initPunchObjLeft();
         
         punchTarget.GetComponent<PunchSequence>().Begin(true);
@@ -296,7 +366,7 @@ public class PunchController : MonoBehaviour
     {
         Debug.Log("UPPERCUT: CREATE RIGHT OBJ");
 
-        handIndicator.GetComponentInChildren<Text>().text = "RIGHT";
+        handIndicator.GetComponentInChildren<Text>().text = "RIGHT. " + totalScore.ToString() + " pts";
         punchTarget = initPunchObjRight();
         
         punchTarget.GetComponent<PunchSequence>().Begin(false);
@@ -526,6 +596,8 @@ public class PunchController : MonoBehaviour
     {
         if(completed >= rounds)
         {
+            totalScore = 0;
+
             destroyLeft(punchTarget);
 
             rounds = 0;
@@ -536,6 +608,20 @@ public class PunchController : MonoBehaviour
             refPoint = eyeCamera.transform;
         }
         
+    }
+
+
+    public void destroyScoreInFewSecs(GameObject scoreObj)
+    {
+        StartCoroutine(DestroyScore(scoreObj, 5.0f, false, true));
+    }
+
+    IEnumerator DestroyScore(GameObject scoreObj, float duration, bool rightHand, bool leftHand)
+    {
+        yield return new WaitForSeconds(duration);
+
+        removeFromScoreStack(scoreObj);
+        Destroy(scoreObj);
     }
 
     /**
