@@ -1228,5 +1228,10 @@ PrefabInstance:
       propertyPath: eyeCamera
       value: 
       objectReference: {fileID: 1106332170}
+    - target: {fileID: 3351469407067845393, guid: 882ecac0aa5cc5a4fa7b382bb1535d81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 882ecac0aa5cc5a4fa7b382bb1535d81, type: 3}
