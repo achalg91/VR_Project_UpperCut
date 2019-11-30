@@ -1000,6 +1000,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902a5525784ae494b967f3fa4357d4ed, type: 3}
+--- !u!1 &641126514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6656292312335052518, guid: 902a5525784ae494b967f3fa4357d4ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 641126513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &707772591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2157,9 +2163,11 @@ MonoBehaviour:
   audio4: {fileID: 563017156}
   uppercutRightPrefab: {fileID: 6111826732263911256, guid: bf3035cced01744dbb197e8af310ebc3,
     type: 3}
-  handIndicator: {fileID: 0}
+  handIndicator: {fileID: 641126514}
   eyeCamera: {fileID: 609552148}
   punchState: 2
+  scoreFlyPrefab: {fileID: 6111826732263911256, guid: fdc38802c1c5a43cba79ad2f77dfa45b,
+    type: 3}
 --- !u!4 &2046543284
 Transform:
   m_ObjectHideFlags: 0
