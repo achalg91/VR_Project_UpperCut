@@ -27,21 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Train Menu.unity
     guid: 2ded6c78c07c74f9685c9c1bf3e7683e
   - enabled: 1
-    path: Assets/Scenes/HookJab.unity
-    guid: 7fbe8252a895342009594fe7ee51bd8b
+    path: Assets/Scenes/Train.unity
+    guid: 8b15f92219bd6f54496230873d4ed43b
   - enabled: 1
-    path: Assets/Scenes/JabUpper.unity
-    guid: 87be0440d04a84780805918c9a7bfb9a
-  - enabled: 1
-    path: Assets/Scenes/UpperHook.unity
-    guid: 227e91084823f45c6acb4eb90e5cb059
-  - enabled: 1
-    path: Assets/Scenes/Hook.unity
-    guid: 781ece1f30b6e4ce5b63b6b67b3029d2
-  - enabled: 1
-    path: Assets/Scenes/Jab.unity
-    guid: 9ae30de79a2984d8c9487143d66b7d70
-  - enabled: 1
-    path: Assets/Scenes/UpperCut.unity
-    guid: 1af572a7c4b0b43908f9439e0f7756ee
+    path: Assets/Scenes/Practice.unity
+    guid: 9efb5599aed14094281d74dbcf32dd3c
   m_configObjects: {}

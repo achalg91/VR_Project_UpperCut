@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using TMPro;
+
 public class PunchController : MonoBehaviour
 {
     private enum HandState { None = 1, Left, Right };
@@ -375,7 +377,9 @@ public class PunchController : MonoBehaviour
         Debug.Log("UPPERCUT: CREATE LEFT OBJ");
         stopWatch.Reset();
         stopWatch.Start();
-        handIndicator.GetComponentInChildren<Text>().text = "LEFT. " + totalScore.ToString() + " pts";
+        handIndicator.GetComponentsInChildren<TextMeshPro>()[0].text = "LEFT";
+        handIndicator.GetComponentsInChildren<TextMeshPro>()[0].color = Color.yellow;
+        handIndicator.GetComponentsInChildren<TextMeshPro>()[1].text = totalScore.ToString();
         punchTarget = initPunchObjLeft();
         
         punchTarget.GetComponent<PunchSequence>().Begin(true);
@@ -387,7 +391,9 @@ public class PunchController : MonoBehaviour
         Debug.Log("UPPERCUT: CREATE RIGHT OBJ");
         stopWatch.Reset();
         stopWatch.Start();
-        handIndicator.GetComponentInChildren<Text>().text = "RIGHT. " + totalScore.ToString() + " pts";
+        handIndicator.GetComponentsInChildren<TextMeshPro>()[0].text = "RIGHT";
+        handIndicator.GetComponentsInChildren<TextMeshPro>()[0].color = Color.green;
+        handIndicator.GetComponentsInChildren<TextMeshPro>()[1].text = totalScore.ToString();
         punchTarget = initPunchObjRight();
         
         punchTarget.GetComponent<PunchSequence>().Begin(false);
