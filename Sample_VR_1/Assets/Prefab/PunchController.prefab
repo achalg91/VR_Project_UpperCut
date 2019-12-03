@@ -558,6 +558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jabPrefab: {fileID: 6111826732263911256, guid: 85f68f26895224b31b9f1d138d8c3b33,
     type: 3}
+  jabRightPrefab: {fileID: 6111826732263911256, guid: 87c52d1ca30024bef890dac102fab18d,
+    type: 3}
   hookPrefab: {fileID: 6111826732263911256, guid: fd9106bd4e77cce4085071d2e418e259,
     type: 3}
   hookRightPrefab: {fileID: 6111826732263911256, guid: 9dd9973e0954f4f27bb2477c2c8c9aff,
@@ -711,6 +713,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Reset
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525927344757969846, guid: 902a5525784ae494b967f3fa4357d4ed,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262401497547865458, guid: 902a5525784ae494b967f3fa4357d4ed,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430433448588968050, guid: 902a5525784ae494b967f3fa4357d4ed,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902a5525784ae494b967f3fa4357d4ed, type: 3}
