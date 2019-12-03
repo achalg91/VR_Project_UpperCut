@@ -334,8 +334,9 @@ public class PunchController : MonoBehaviour
     private float scaleTimeEndToPoints(long elapsedMilliseconds)
     {
         //return elapsedMilliseconds;
-        float inv = 1.0f / elapsedMilliseconds;
-        return (int)(inv*100000);
+
+        float slope = (100f - 0f) / (4000f - 0f);
+        return (int) ((100)-slope*elapsedMilliseconds);
         //return inv * 100000;
     }
 

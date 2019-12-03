@@ -21,4 +21,9 @@ public class GoToMainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(Globals.MainMenu);
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
