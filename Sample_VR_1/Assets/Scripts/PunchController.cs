@@ -67,7 +67,7 @@ public class PunchController : MonoBehaviour
     private float jabArmLengthFactor = 1f;
     private float hookArmLengthFactor = 0.6f;
     private float UpperCutLengthFactor = 0.6f;
-    private float UpperCutHeightFactor = 0.6f;
+    private float UpperCutHeightFactor = 0.1f;
 
     public bool restart { get; set; }
 
@@ -169,10 +169,10 @@ public class PunchController : MonoBehaviour
                 switch (handState)
                 {
                     case HandState.Left:
-                        newPos = refPoint.position + new Vector3(0.0f, 0.0f, Globals.armLength * UpperCutLengthFactor) ;
+                        newPos = refPoint.position + new Vector3(0.0f, -Globals.height*UpperCutHeightFactor, Globals.armLength * UpperCutLengthFactor) ;
                         break;
                     case HandState.Right:
-                        newPos = refPoint.position + new Vector3(0.0f, -0.5f, Globals.armLength * 0.67f);
+                        newPos = refPoint.position + new Vector3(0.0f, -Globals.height * UpperCutHeightFactor, Globals.armLength * UpperCutLengthFactor);
                         break;
                     default:
                         break;
@@ -229,10 +229,10 @@ public class PunchController : MonoBehaviour
                         switch (handState)
                         {
                             case HandState.Left:
-                                newPos = refPoint.position + new Vector3(-0.25f, -0.5f, Globals.armLength * 0.67f);
+                                newPos = refPoint.position + new Vector3(0.0f,-Globals.height * UpperCutHeightFactor, Globals.armLength * UpperCutLengthFactor);
                                 break;
                             case HandState.Right:
-                                newPos = refPoint.position + new Vector3(0.25f, -0.5f, Globals.armLength * 0.67f);
+                                newPos = refPoint.position + new Vector3(0.0f, -Globals.height * UpperCutHeightFactor, Globals.armLength * UpperCutLengthFactor);
                                 break;
                             default:
                                 break;

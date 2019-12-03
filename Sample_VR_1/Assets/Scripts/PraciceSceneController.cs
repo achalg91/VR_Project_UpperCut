@@ -99,7 +99,7 @@ public class PraciceSceneController : MonoBehaviour
 
     private IEnumerator DisplayLetsGo()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         displayText.text = letsGoText;
         audioSource.PlayOneShot(letsGo);
         m_timerEnded = true;
@@ -108,7 +108,7 @@ public class PraciceSceneController : MonoBehaviour
 
     private IEnumerator StartPunch()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         punchController.GetComponent<PunchController>().Begin(getPunchState());
     }
 
