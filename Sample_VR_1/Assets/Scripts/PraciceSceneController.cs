@@ -56,6 +56,7 @@ public class PraciceSceneController : MonoBehaviour
             displayText.text = "Total Score: " + totalScore.ToString() + " pts";
         }
 
+        punchController.GetComponent<PunchController>().refreshScore();
         restartButton.SetActive(true);
 
     }
