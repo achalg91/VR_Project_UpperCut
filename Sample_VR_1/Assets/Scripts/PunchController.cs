@@ -63,7 +63,12 @@ public class PunchController : MonoBehaviour
 
     private bool updatingScore;
 
+
+    private float jabArmLengthFactor = 1f;
+    private float hookArmLengthFactor = 0.6f;
+
     public bool restart { get; set; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -136,10 +141,10 @@ public class PunchController : MonoBehaviour
                 switch (handState)
                 {
                     case HandState.Left:
-                        newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
+                        newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * hookArmLengthFactor);
                         break;
                     case HandState.Right:
-                        newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
+                        newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * hookArmLengthFactor);
                         break;
                     default:
                         break;
@@ -149,10 +154,10 @@ public class PunchController : MonoBehaviour
                 switch (handState)
                 {
                     case HandState.Left:
-                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 0.67f);
+                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * jabArmLengthFactor);
                         break;
                     case HandState.Right:
-                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 0.67f);
+                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * jabArmLengthFactor);
                         break;
                     default:
                         break;
@@ -178,10 +183,10 @@ public class PunchController : MonoBehaviour
                         switch (handState)
                         {
                             case HandState.Left:
-                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
+                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * hookArmLengthFactor);
                                 break;
                             case HandState.Right:
-                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
+                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * hookArmLengthFactor);
                                 break;
                             default:
                                 break;
@@ -191,10 +196,10 @@ public class PunchController : MonoBehaviour
                         switch (handState)
                         {
                             case HandState.Left:
-                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * jabArmLengthFactor);
                                 break;
                             case HandState.Right:
-                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * jabArmLengthFactor);
                                 break;
                             default:
                                 break;
@@ -209,10 +214,10 @@ public class PunchController : MonoBehaviour
                         switch (handState)
                         {
                             case HandState.Left:
-                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * jabArmLengthFactor);
                                 break;
                             case HandState.Right:
-                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                                newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * jabArmLengthFactor);
                                 break;
                             default:
                                 break;
@@ -253,10 +258,10 @@ public class PunchController : MonoBehaviour
                         switch (handState)
                         {
                             case HandState.Left:
-                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
+                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * hookArmLengthFactor);
                                 break;
                             case HandState.Right:
-                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * 0.55f);
+                                newPos = refPoint.position + new Vector3(0f, 0, Globals.armLength * hookArmLengthFactor);
                                 break;
                             default:
                                 break;
