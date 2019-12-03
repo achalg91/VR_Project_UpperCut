@@ -631,12 +631,12 @@ public class PunchController : MonoBehaviour
 
     public void setLevel2()
     {
-        speed = 10.0f;
+        speed = 7.0f;
     }
 
     public void setLevel3()
     {
-        speed = 15.0f;
+        speed = 10.0f;
     }
 
     public void Reset()
@@ -658,6 +658,11 @@ public class PunchController : MonoBehaviour
         Begin(this.punchState);
     }
 
+
+    public void refreshScore()
+    {
+        handIndicator.GetComponentsInChildren<TextMeshPro>()[1].text = totalScore.ToString();
+    }
 
     public void destroyScoreInFewSecs(GameObject scoreObj)
     {
