@@ -63,12 +63,17 @@ public class PunchController : MonoBehaviour
 
     private bool updatingScore;
 
+<<<<<<< HEAD
     private float jabArmLengthFactor = 1f;
     private float hookArmLengthFactor = 0.6f;
 
     public bool restart { get; set; }
 
 
+=======
+    public bool restart { get; set; }
+
+>>>>>>> 252a974d679675673bec45b001f983487d8b98e7
     // Start is called before the first frame update
     void Start()
     {
