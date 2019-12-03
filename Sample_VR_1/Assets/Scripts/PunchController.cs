@@ -15,6 +15,10 @@ public class PunchController : MonoBehaviour
 
     [SerializeField]
     public GameObject jabPrefab;
+
+    [SerializeField]
+    public GameObject jabRightPrefab;
+
     [SerializeField]
     public GameObject hookPrefab;
 
@@ -142,10 +146,10 @@ public class PunchController : MonoBehaviour
                 switch (handState)
                 {
                     case HandState.Left:
-                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 0.67f);
                         break;
                     case HandState.Right:
-                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 1.0f);
+                        newPos = refPoint.position + new Vector3(0.0f, 0, Globals.armLength * 0.67f);
                         break;
                     default:
                         break;
@@ -472,7 +476,7 @@ public class PunchController : MonoBehaviour
                 ret = Instantiate(hookRightPrefab, startPos, Quaternion.identity);
                 break;
             case PunchState.Jab:
-                ret = Instantiate(jabPrefab, startPos, Quaternion.identity);
+                ret = Instantiate(jabRightPrefab, startPos, Quaternion.identity);
                 break;
             case PunchState.UpperCut:
                 ret = Instantiate(uppercutRightPrefab, startPos, Quaternion.identity);
@@ -484,7 +488,7 @@ public class PunchController : MonoBehaviour
                         ret = Instantiate(hookRightPrefab, startPos, Quaternion.identity);
                         break;
                     default:
-                        ret = Instantiate(jabPrefab, startPos, Quaternion.identity);
+                        ret = Instantiate(jabRightPrefab, startPos, Quaternion.identity);
                         break;
 
                 }
@@ -493,7 +497,7 @@ public class PunchController : MonoBehaviour
                 switch (subPunchState)
                 {
                     case PunchState.Jab:
-                        ret = Instantiate(jabPrefab, startPos, Quaternion.identity);
+                        ret = Instantiate(jabRightPrefab, startPos, Quaternion.identity);
                         break;
                     default:
                         ret = Instantiate(uppercutRightPrefab, startPos, Quaternion.identity);
@@ -534,7 +538,6 @@ public class PunchController : MonoBehaviour
         {
             handIndicator.GetComponentInChildren<Text>().text = "RESTART";
         }
-        
     }
 
     public void SetRounds(int x)
