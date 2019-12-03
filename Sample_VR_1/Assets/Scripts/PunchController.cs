@@ -63,9 +63,12 @@ public class PunchController : MonoBehaviour
 
     private bool updatingScore;
 
+    public bool restart { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
+        restart = false;
         scoreStack = new List<ScoreStack>();
         totalScore = 0;
         rounds = 0;
@@ -331,6 +334,11 @@ public class PunchController : MonoBehaviour
         Destroy(pt);
     }
 
+    public float getTotalScore()
+    {
+        return totalScore;
+    }
+
     private float scaleTimeEndToPoints(long elapsedMilliseconds)
     {
         //return elapsedMilliseconds;
@@ -537,9 +545,10 @@ public class PunchController : MonoBehaviour
         }
         else
         {
-            handIndicator.GetComponentInChildren<Text>().text = "RESTART";
+            restart = true;
         }
     }
+
 
     public void SetRounds(int x)
     {
@@ -625,20 +634,21 @@ public class PunchController : MonoBehaviour
 
     public void Reset()
     {
-        if(completed >= rounds)
-        {
-            totalScore = 0;
+        restart = false;
 
-            destroyLeft(punchTarget);
+        totalScore = 0;
 
-            rounds = 0;
-            completed = 0;
+        rounds = 0;
 
-            Begin(this.punchState);
+        completed = 0;
 
-            refPoint = eyeCamera.transform;
-        }
-        
+        //Begin();
+
+        refPoint = eyeCamera.transform;
+
+        updatingScore = false;
+
+        Begin(this.punchState);
     }
 
 

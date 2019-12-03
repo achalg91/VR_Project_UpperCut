@@ -18,6 +18,9 @@ public class PraciceSceneController : MonoBehaviour
     private int m_timerCount = 3;
     public GameObject punchController;
 
+    public GameObject restartButton;
+
+
     public bool InitiatingDone { get; set; }
 
     // Start is called before the first frame update
@@ -25,6 +28,7 @@ public class PraciceSceneController : MonoBehaviour
     {
         StartCoroutine(RunInitiator());
         m_timerRunning = true;
+        displayText.text = "INITIATING ROUND! TAKE YOUR STANCE AND GET READY";
     }
 
     // Update is called once per frame
@@ -36,6 +40,32 @@ public class PraciceSceneController : MonoBehaviour
         {
             //code to call practise punches or call the individual scenes
         }
+
+        if(punchController.GetComponent<PunchController>().restart)
+        {
+            initRestartOptions();
+        }
+    }
+
+    private void initRestartOptions()
+    {
+        punchController.GetComponent<PunchController>().restart = false;
+        float totalScore = punchController.GetComponent<PunchController>().getTotalScore();
+        if (totalScore > 0.0f) { 
+            display.SetActive(true);
+            displayText.text = "Total Score: " + totalScore.ToString() + " pts";
+        }
+
+        restartButton.SetActive(true);
+
+    }
+
+    public void restart()
+    {
+        displayText.text = "INITIATING ROUND! TAKE YOUR STANCE AND GET READY";
+        restartButton.SetActive(false);
+        display.SetActive(false);
+        punchController.GetComponent<PunchController>().Reset();
     }
 
     private IEnumerator RunInitiator()
