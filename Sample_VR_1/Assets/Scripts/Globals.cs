@@ -6,7 +6,7 @@ static class Globals
 {
     public enum PunchState { Jab = 1, Hook, UpperCut, HookJab, JabUpper, UpperHook };
     public static float height = 3.5f;
-    internal static float armLength= 0.8f ;
+    internal static float armLength= 0.6f ;
     public static string LearnMenuInformation { get; set; }
     public static readonly string MainMenu = "Main Menu";
     public static readonly string LearnMenu = "Learn Menu";
